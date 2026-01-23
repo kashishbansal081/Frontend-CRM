@@ -1,0 +1,84 @@
+.lead-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.lead-content {
+  flex: 1;
+  padding: 24px 32px;
+  background: #f8fafc;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filters select {
+  padding: 6px 10px;
+}
+
+.add-btn {
+  margin-left: auto;
+  background: #2563eb !important;
+  color: white !important;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+
+}
+.lead-list {
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.lead-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.lead-row:hover {
+  background: #f1f5f9;
+}
+
+.lead-name {
+  font-weight: 500;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status.new {
+  color: white
+}
+
+.status.contacted {
+  color: white;
+}
+
+.status.qualified {
+  color: white;
+}
+
+.status.closed {
+  color: white;
+}

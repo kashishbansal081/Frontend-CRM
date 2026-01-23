@@ -1,38 +1,36 @@
-.App {
-  text-align: center;
+.salesAgent-dropdown{
+display: inline-block !important;
+margin-right: 1rem;
+width: 25% !important;
+margin-top: 8px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Lead Management css */
+
+/* PAGE LAYOUT */
+.lead-page {
+  display: flex;          /* SIDEBAR + CONTENT SIDE BY SIDE */
+  min-height: 100vh;      /* FULL HEIGHT */
+  background-color: #f8fafc;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* MAIN CONTENT AREA */
+.lead-content {
+  flex: 1;                /* TAKE REMAINING WIDTH */
+  padding: 24px 32px;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* PAGE TITLE */
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main-content-padding{
+  padding-left: 18rem !important;
+  padding-top: 1.5rem;
+  padding-right: 3rem;
 }

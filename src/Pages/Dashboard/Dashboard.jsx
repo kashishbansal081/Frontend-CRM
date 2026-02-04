@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
 import useFetch from "../../customHooks/useFetch";
-import Loader from '../../Components/Features/Spinner'
+import Loader from "../../Components/Features/Spinner";
 
 const DashboardLayout = () => {
   const [activeStatus, setActiveStatus] = useState("All");
@@ -60,12 +60,10 @@ const DashboardLayout = () => {
         </nav>
       </aside>
 
-      <main className="main" style={{ paddingLeft: "17rem" }}>
+      <main className="main">
         <h2 className="title">Dashboard</h2>
 
-        {loading && (
-            <Loader text = 'Loading leads...'></Loader>
-        )}
+        {loading && <Loader text="Loading leads..."></Loader>}
 
         {!loading && (
           <>
@@ -149,7 +147,6 @@ const DashboardLayout = () => {
         <Link to={"/leadform"} className="link">
           <button className="add-btn mb-4">+ Add New Lead</button>
         </Link>
-        
       </main>
     </div>
   );

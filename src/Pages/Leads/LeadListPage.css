@@ -7,6 +7,7 @@
   flex: 1;
   padding: 24px 32px;
   background: #f8fafc;
+  margin-left: 220px;
 }
 
 .page-title {
@@ -19,6 +20,8 @@
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .filters select {
@@ -34,11 +37,11 @@
   border-radius: 4px;
 }
 
-.link{
-    color: white;
-    text-decoration: none;
-
+.link {
+  color: white;
+  text-decoration: none;
 }
+
 .lead-list {
   background: white;
   border-radius: 6px;
@@ -65,20 +68,42 @@
 .status {
   font-size: 13px;
   font-weight: 600;
-}
-
-.status.new {
-  color: white
-}
-
-.status.contacted {
   color: white;
 }
 
-.status.qualified {
-  color: white;
-}
+@media (max-width: 768px) {
+  .lead-page {
+    flex-direction: column;
+  }
 
-.status.closed {
-  color: white;
+  .lead-content {
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filters select,
+  .add-btn {
+    width: 100%;
+  }
+
+  .add-btn {
+    margin-left: 0;
+  }
+
+  .lead-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .agent {
+    margin-left: 0 !important;
+    font-size: 14px;
+    color: #475569;
+  }
 }

@@ -10,6 +10,9 @@
   color: white;
   padding: 20px;
   height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .logo {
@@ -26,10 +29,12 @@
   opacity: 1;
 }
 
+/* Main */
 .main {
   flex: 1;
   padding: 20px;
   background: #f8fafc;
+  margin-left: 220px;
 }
 
 .title {
@@ -72,19 +77,14 @@
   background: #6b7280;
 }
 
-.status-box {
-  background: white;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 6px;
-}
-
 .filters {
   margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .filters button {
-  margin-right: 8px;
   padding: 6px 12px;
   border: 1px solid #ccc;
   background: white;
@@ -110,10 +110,6 @@
   margin-top: 30px;
 }
 
-.status-overview h3 {
-  margin-bottom: 16px;
-}
-
 .status-card {
   display: flex;
   justify-content: space-between;
@@ -133,12 +129,6 @@
   font-size: 14px;
 }
 
-.status-card .action {
-  margin-top: 8px;
-  font-size: 13px;
-  font-weight: 500;
-}
-
 .status-card .count {
   width: 42px;
   height: 42px;
@@ -147,7 +137,6 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 16px;
 }
 
 .status-card.new {
@@ -190,13 +179,56 @@
   color: white;
 }
 
-.linkLead{
+.linkLead {
   text-decoration: none;
 }
 
-.link{
-    color: white;
-    text-decoration: none;
-
+.link {
+  color: white;
+  text-decoration: none;
 }
 
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .status-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+}

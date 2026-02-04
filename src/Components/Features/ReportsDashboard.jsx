@@ -8,15 +8,15 @@ export default function ReportsDashboard() {
     error,
   } = useFetch("https://crm-backend-beryl.vercel.app/v1/leads");
 
-  if (loading) return <p className="main-content-padding">Loading reports...</p>;
-  if (error) return <p className="main-content-padding">Failed to load reports</p>;
+  if (loading) return <p className="text-center mt-4">Loading reports...</p>;
+  if (error) return <p className="text-center mt-4">Failed to load reports</p>;
 
   const statusColors = [
-    "#4CAF50", // New
-    "#2196F3", // Contacted
-    "#FFC107", // Qualified
-    "#9C27B0", // Proposal
-    "#F44336", // Closed
+    "#4CAF50",
+    "#2196F3",
+    "#FFC107",
+    "#9C27B0",
+    "#F44336",
   ];
 
   const agentColors = [
@@ -32,8 +32,6 @@ export default function ReportsDashboard() {
     "#3F51B5",
   ];
 
-
-
   const today = new Date();
   const oneWeekAgo = new Date(today);
   oneWeekAgo.setDate(today.getDate() - 7);
@@ -45,11 +43,9 @@ export default function ReportsDashboard() {
   );
 
   const dateMap = {};
-
   leadsClosedLastWeek.forEach((lead) => {
     const date = new Date(lead.updatedAt).toLocaleDateString();
-    if (!dateMap[date]) dateMap[date] = 0;
-    dateMap[date]++;
+    dateMap[date] = (dateMap[date] || 0) + 1;
   });
 
   const closedWeeklyChart = {
@@ -63,95 +59,85 @@ export default function ReportsDashboard() {
     ],
   };
 
-
   const leadStatuses = ["New", "Contacted", "Qualified", "Proposal", "Closed"];
-
-  const pipelineCounts = leadStatuses.map(
-    (status) => leads.filter((l) => l.status === status).length,
-  );
 
   const pipelineChart = {
     labels: leadStatuses,
     datasets: [
       {
         label: "Lead Status Distribution",
-        data: pipelineCounts,
+        data: leadStatuses.map(
+          (status) => leads.filter((l) => l.status === status).length,
+        ),
         backgroundColor: statusColors,
       },
     ],
   };
 
-
-
   const agents = {};
-
   leads.forEach((lead) => {
-    const agentName = lead.salesAgent?.name || "Unassigned";
-    if (!agents[agentName]) agents[agentName] = 0;
-    agents[agentName]++;
+    const name = lead.salesAgent?.name || "Unassigned";
+    agents[name] = (agents[name] || 0) + 1;
   });
 
-  const agentNames = Object.keys(agents);
-  const agentCounts = Object.values(agents);
-
   const agentBarChart = {
-    labels: agentNames,
+    labels: Object.keys(agents),
     datasets: [
       {
         label: "Leads By Sales Agent",
-        data: agentCounts,
-        backgroundColor: agentNames.map(
+        data: Object.values(agents),
+        backgroundColor: Object.keys(agents).map(
           (_, i) => agentColors[i % agentColors.length],
         ),
       },
     ],
   };
 
-
   const statusCounts = {};
   leads.forEach((lead) => {
-    if (!statusCounts[lead.status]) statusCounts[lead.status] = 0;
-    statusCounts[lead.status]++;
+    statusCounts[lead.status] = (statusCounts[lead.status] || 0) + 1;
   });
 
-  const statusLabels = Object.keys(statusCounts);
-  const statusValues = Object.values(statusCounts);
-
   const statusPieChart = {
-    labels: statusLabels,
+    labels: Object.keys(statusCounts),
     datasets: [
       {
-        label: "Lead Status Distribution",
-        data: statusValues,
-        backgroundColor: statusLabels.map(
-          (status) => statusColors[leadStatuses.indexOf(status)] || "#000000",
+        data: Object.values(statusCounts),
+        backgroundColor: Object.keys(statusCounts).map(
+          (s) => statusColors[leadStatuses.indexOf(s)] || "#000",
         ),
       },
     ],
   };
 
   return (
-    <div className="container py-4" style={{ paddingLeft: "11rem" }}>
+    <div className="container-fluid py-4">
       <h2 className="mb-4">Reports & Visualization</h2>
 
       <div className="mb-5">
         <h5>Leads Closed Last Week</h5>
-        <Bar data={closedWeeklyChart} />
+        <div className="chart-container">
+          <Bar data={closedWeeklyChart} />
+        </div>
       </div>
 
       <div className="mb-5">
         <h5>Total Leads in Pipeline</h5>
-        <Bar data={pipelineChart} />
+        <div className="chart-container">
+          <Bar data={pipelineChart} />
+        </div>
       </div>
 
       <div className="mb-5">
         <h5>Leads by Sales Agent</h5>
-        <Bar data={agentBarChart} />
+        <div className="chart-container">
+          <Bar data={agentBarChart} />
+        </div>
       </div>
 
       <div className="mb-5">
         <h5>Lead Status Distribution</h5>
-        <div style={{ width: "900px", height: "600px", margin: "auto" }}>
+        <div className="pie-container">
           <Pie data={statusPieChart} options={{ maintainAspectRatio: false }} />
         </div>
       </div>

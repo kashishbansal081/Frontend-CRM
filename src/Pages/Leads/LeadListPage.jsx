@@ -5,7 +5,9 @@ import "./LeadListPage.css";
 import { useState } from "react";
 
 const LeadListPage = () => {
-  const { data, loading, error } = useFetch("https://crm-backend-beryl.vercel.app/v1/leads");
+  const { data, loading, error } = useFetch(
+    "https://crm-backend-beryl.vercel.app/v1/leads",
+  );
 
   const leads = data ? data : [];
 
@@ -18,7 +20,9 @@ const LeadListPage = () => {
       <>
         <div>
           <Sidebar />
-          <p style={{ paddingLeft: "18rem" , paddingTop: '3rem'}}>Loading leads...</p>
+          <p style={{ paddingTop: "3rem", textAlign: "center" }}>
+            Loading leads...
+          </p>
         </div>
       </>
     );
@@ -57,7 +61,7 @@ const LeadListPage = () => {
     <div className="lead-page">
       <Sidebar />
 
-      <div className="lead-content" style={{ paddingLeft: "18rem" }}>
+      <div className="lead-content">
         <h2 className="page-title">Lead List</h2>
 
         <div className="filters">

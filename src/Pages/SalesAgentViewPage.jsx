@@ -20,10 +20,10 @@ export default function LeadsByAgent() {
   }, {});
 
   return (
-    <div className="d-flex">
+    <div className="d-flex flex-column flex-md-row">
       <Sidebar />
 
-      <div className="flex-grow-1 main-content-padding">
+      <div className="flex-grow-1 main-content-padding px-3 px-md-4">
         <h2 className="mb-4">Leads by Sales Agent</h2>
 
         {Object.entries(groupedByAgent).map(([agentName, agentLeads]) => {
@@ -36,23 +36,24 @@ export default function LeadsByAgent() {
           }
 
           if (sortOrder[agentName]) {
-            visibleLeads.sort(
-              (a, b) => a.timeToClose - b.timeToClose
-            );
+            visibleLeads.sort((a, b) => a.timeToClose - b.timeToClose);
           }
 
           return (
-            <div key={agentName} className="card mb-4 w-50">
+            <div
+              key={agentName}
+              className="card mb-4 w-100 w-md-50"
+            >
               <div className="card-body">
                 <h5 className="mb-3">Sales Agent: {agentName}</h5>
 
-                <div className="d-flex gap-3 mb-3">
+                <div className="d-flex flex-column flex-sm-row gap-2 mb-3">
                   <select
-                    className="form-select w-auto"
+                    className="form-select w-100 w-sm-auto"
                     onChange={(e) =>
                       setStatusFilter({
                         ...statusFilter,
-                        [agentName]: e.target.value
+                        [agentName]: e.target.value,
                       })
                     }
                   >
@@ -64,11 +65,11 @@ export default function LeadsByAgent() {
                   </select>
 
                   <button
-                    className="btn btn-outline-secondary btn-sm"
+                    className="btn btn-outline-secondary btn-sm w-100 w-sm-auto"
                     onClick={() =>
                       setSortOrder({
                         ...sortOrder,
-                        [agentName]: true
+                        [agentName]: true,
                       })
                     }
                   >
@@ -79,7 +80,7 @@ export default function LeadsByAgent() {
                 {visibleLeads.map((lead) => (
                   <div
                     key={lead._id}
-                    className="border-bottom py-2 d-flex justify-content-between"
+                    className="border-bottom py-2 d-flex flex-column flex-sm-row justify-content-between"
                   >
                     <span>{lead.name}</span>
                     <small className="text-muted">

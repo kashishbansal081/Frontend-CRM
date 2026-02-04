@@ -41,7 +41,6 @@ export default function LeadComments({ leadId }) {
 
     const newComment = await res.json();
 
-    // Add new comment on top
     setComments((prev) => [newComment, ...prev]);
     setText("");
   };
@@ -51,36 +50,36 @@ export default function LeadComments({ leadId }) {
       <div className="card-header fw-semibold">Comments & Updates</div>
 
       <div className="card-body">
-        <div className="mb-3">
+        <div className="mb-3 d-flex flex-column flex-md-row gap-2">
           <textarea
-            className="form-control"
+            className="form-control flex-grow-1"
             rows="3"
             placeholder="Add a comment or update..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
 
-          <select
-            className="form-control mt-2"
-            value={agent}
-            onChange={(e) => setAgent(e.target.value)}
-          >
-            <option value="">Select Sales Agent</option>
-            {salesAgents && salesAgents?.map((sa) => (
-              <option key={sa._id} value={sa._id}>
-                {sa.name}
-              </option>
-            ))}
-          </select>
+          <div className="d-flex flex-column gap-2 flex-md-grow-0" style={{ minWidth: "200px" }}>
+            <select
+              className="form-control"
+              value={agent}
+              onChange={(e) => setAgent(e.target.value)}
+            >
+              <option value="">Select Sales Agent</option>
+              {salesAgents && salesAgents?.map((sa) => (
+                <option key={sa._id} value={sa._id}>
+                  {sa.name}
+                </option>
+              ))}
+            </select>
 
-          <button className="btn btn-secondary mt-2" onClick={addComment}>
-            Add Comment
-          </button>
+            <button className="btn btn-secondary" onClick={addComment}>
+              Add Comment
+            </button>
+          </div>
         </div>
 
-        {comments.length === 0 && (
-          <p className="text-muted">No comments yet</p>
-        )}
+        {comments.length === 0 && <p className="text-muted">No comments yet</p>}
 
         {comments.map((c, idx) => (
           <div key={idx} className="border rounded p-2 mb-2">

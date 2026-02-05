@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useFetch from "../../customHooks/useFetch";
+import { toast } from "react-toastify";
 
 export default function LeadForm({ defaultValues = {} }) {
-  const { data: salesAgentData } = useFetch("https://crm-backend-beryl.vercel.app/v1/agents");
-  const { data: tagsData } = useFetch("https://crm-backend-beryl.vercel.app/v1/tags");
+  const { data: salesAgentData } = useFetch(
+    "https://crm-backend-beryl.vercel.app/v1/agents",
+  );
+  const { data: tagsData } = useFetch(
+    "https://crm-backend-beryl.vercel.app/v1/tags",
+  );
 
   const [form, setForm] = useState({
     name: "",
@@ -64,16 +69,19 @@ export default function LeadForm({ defaultValues = {} }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("https://crm-backend-beryl.vercel.app/v1/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    const response = await fetch(
+      "https://crm-backend-beryl.vercel.app/v1/leads",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      },
+    );
 
     const result = await response.json();
     console.log("Saved Lead:", result);
 
-    alert("Lead added successfully!");
+    toast.success("Lead added successfully!");
 
     setForm({
       name: "",

@@ -54,7 +54,7 @@ export default function SalesAgentPage() {
               </Link>
             </div>
 
-            <div className="card shadow-sm w-100">
+            <div className="card shadow-sm w-100 mb-4 mb-md-0">
               <div className="card-body p-3 p-md-4">
                 {loading && <p className="text-center">Loading agents...</p>}
 

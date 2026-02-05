@@ -93,14 +93,17 @@ const LeadListPage = () => {
           </button>
         </div>
 
-        <div className="lead-list">
+        <div className="lead-list mb-4">
           {filteredLeads?.map((lead) => (
             <Link to={`/leads/${lead._id}`} key={lead._id} className="lead-row">
               <div className="lead-name">{lead.name}</div>
               <div className={`status ${lead.status.toLowerCase()}`}>
                 {lead.status}
               </div>
-              <div className="agent ms-4">
+              <div className={`priority ${lead.priority?.toLowerCase()}`}>
+                {lead.priority}
+              </div>
+              <div className="agent ms-0 ms-md-4">
                 {lead.salesAgent?.name || "Unassigned"}
               </div>
             </Link>
